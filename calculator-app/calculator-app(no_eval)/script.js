@@ -73,8 +73,17 @@ function evaluateExpression() {
     }
 
     for (let j = 0; j < stack.length; j++) {
-        if (stack[i] == '*' || stack[i] == '/') {
-
+        if (stack[j] == '*' || stack[j] == '/') {
+            if (stack[j-1] == null) {
+                throw new Error('Invalid expression');
+                document.getElementById('display-input').value = 'Error';
+            }
+            if (stack[j] == '*') {
+                stack1.push(parseFloat(stack[j - 1]) * parseFloat(stack[j + 1]));
+            }
+            if (stack[j] == '/') {
+                stack1.push(parseFloat(stack[j - 1]) / parseFloat(stack[j + 1]));
+            }
         }
     }
 }
