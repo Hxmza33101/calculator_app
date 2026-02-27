@@ -2,7 +2,7 @@
 
 let display = '10/2+15'
 
-function evaluateExpression() {
+function tokenizeExpression() {
     let stack = [];
 
     let tempString = ''

@@ -1,4 +1,4 @@
-let display = ' ';
+let display = '';
 
 for (let i = 0; i < 10; i++) {
     document.getElementById(i.toString()).addEventListener('click', function() {
@@ -98,7 +98,7 @@ function evaluateExpression() {
     document.getElementById('display-input').value = display;
 }
 
-function evaluateExpression() {
+function tokenizeExpression() {
     let stack = [];
 
     let tempString = ''
@@ -123,19 +123,24 @@ function completeDM(array) {
 
     for (let i = 0; i < array.length; i++) {
         if (!operators.includes(array[i])) {
-            result.push(array[i]);
+            result.push(parseFloat(array[i]));
         } else if (array[i] == '+' || array[i] == '-') {
             result.push(array[i]);
         }   else if (i + 1 >= array.length) {
+                display = ''
+                document.getElementById('display-input').value = "Error";
                 throw "Invalid expression"
             }   else if (array[i] == '*') {
                     if (!operators.includes(result[result.length-1])) {
-                    //Checks to see if the last thing added to the results array is a number
+                    //Checks to see if the last thing added to the results array is a number,
                     let temp = parseFloat(result[result.length-1]) * parseFloat(array[i+1])
                     result.pop();
                     result.push(temp);
+                    i++;
                 } else {
-                    throw error = Error("Invalid expression");
+                    display = ''
+                    document.getElementById('display-input').value = "Error";
+                    throw new Error("Invalid expression");
                 }
             } else if (array[i] == '/') {
                 if (!operators.includes(result[result.length-1])) {
@@ -143,8 +148,11 @@ function completeDM(array) {
                     let temp = parseFloat(result[result.length-1]) / parseFloat(array[i+1])
                     result.pop();
                     result.push(temp);
+                    i++;
                 } else {
-                    throw error = Error("Invalid expression");
+                    display = ''
+                    document.getElementById('display-input').value = "Error";
+                    throw new Error("Invalid expression");
                 }
         } 
     }
@@ -159,6 +167,8 @@ function completeAS(array) {
         if (!operators.includes(array[i])) {
             result.push(array[i]);
         } else if (i + 1 >= array.length) {
+                display = ''
+                document.getElementById('display-input').value = 'Error';
                 throw "Invalid expression"
             }   else if (array[i] == '+') {
                     if (!operators.includes(result[result.length-1])) {
@@ -168,7 +178,9 @@ function completeAS(array) {
                     result.push(temp);
                     i++;
                 } else {
-                    throw error = Error("Invalid expression");
+                    display = ''
+                    document.getElementById('display-input').value = 'Error';
+                    throw new Error("Invalid expression");
                 }
             } else if (array[i] == '-') {
                 if (!operators.includes(result[result.length-1])) {
@@ -178,7 +190,9 @@ function completeAS(array) {
                     result.push(temp);
                     i++
                 } else {
-                    throw error = Error("Invalid expression");
+                    display = ''
+                    document.getElementById('display-input').value = 'Error';
+                    throw new Error("Invalid expression");
                 }
         } 
     }

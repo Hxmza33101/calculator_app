@@ -13,7 +13,7 @@ function completeDM(array) {
                 throw "Invalid expression"
             }   else if (array[i] == '*') {
                     if (!operators.includes(result[result.length-1])) {
-                    //Checks to see if the last thing added to the results array is a number
+                    //Checks to see if the last thing added to the results array is a number,
                     let temp = parseFloat(result[result.length-1]) * parseFloat(array[i+1])
                     result.pop();
                     result.push(temp);
