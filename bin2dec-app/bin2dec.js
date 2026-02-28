@@ -5,9 +5,17 @@ function binaryToDecimal1(binaryString1) {
     return binary;
 }
 
-console.log(binaryToDecimal1(1001));
+console.log(binaryToDecimal1('1001'));
 
 
 function binaryToDecimal(binaryString) {
-    
+    let decimal = 0;
+    let power = 0;
+    for (let i = binaryString.length-1; i >= 0; i--) {
+        decimal += binaryString[i] * (2**power);
+        power++;
+    }
+    return decimal;
 }
+
+console.log(binaryToDecimal('1001'));
